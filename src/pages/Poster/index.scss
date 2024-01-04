@@ -1,0 +1,243 @@
+.posterPage {
+    width: 100%;
+    height: 100%;
+    background-image: url("https://huanghe.ronghuiad.com/tempAssets/images/bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    .foreground {
+        width: 750px;
+        height: 1560px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 5;
+        background: url(https://huanghe.ronghuiad.com/tempAssets/images/posterPage/posterF.png)
+            no-repeat #ce1921;
+        background-position: bottom center;
+        background-size: 100% 100%;
+        .fFont {
+            width: 309px;
+            height: 36px;
+            background: url(https://huanghe.ronghuiad.com/tempAssets/images/posterPage/fFont.png)
+                no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+            left: 50%;
+            margin-left: -(309px / 2);
+            bottom: 850px;
+        }
+        .slideBox {
+            width: 430px;
+            height: 450px;
+            position: absolute;
+            left: 50%;
+            margin-left: -(430px/2);
+            bottom: 350px;
+            .sbImg {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                position: absolute;
+            }
+        }
+        .preBox {
+            width: 335px;
+            height: 23px;
+            position: absolute;
+            left: 50%;
+            margin-left: -(335px/2);
+            bottom: 250px;
+            .Ingots {
+                width: 52px;
+                height: 32px;
+                position: absolute;
+                left: 0px;
+                margin-left: -26px;
+                background: url(https://huanghe.ronghuiad.com/tempAssets/images/posterPage/Ingots.png)
+                    no-repeat;
+                background-size: 100% 100%;
+                bottom: 30px;
+                animation: IngotsAni 1s linear infinite;
+            }
+            @keyframes IngotsAni {
+                0% {
+                    transform: scale(0.8) rotate(0deg);
+                }
+                25% {
+                    transform: scale(0.9) rotate(5deg);
+                }
+                50% {
+                    transform: scale(1) rotate(0deg);
+                }
+                75% {
+                    transform: scale(0.9) rotate(-5deg);
+                }
+                100% {
+                    transform: scale(0.8) rotate(0deg);
+                }
+            }
+            .prePro {
+                border-radius: 10px;
+                border: 2px solid #000;
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                background: #fff;
+                .loadPre {
+                    width: 20%;
+                    height: 100%;
+                    background-image: linear-gradient(
+                        to right,
+                        #ffe57a,
+                        #d7a72b
+                    );
+                    border-right: 2px solid #000;
+                    position: relative;
+                    border-radius: 8px;
+                }
+            }
+            .loadFont {
+                width: 100%;
+                position: absolute;
+                text-align: center;
+                font-size: 25px;
+                color: #fff;
+                margin-top: 10px;
+            }
+        }
+    }
+    .mainBox {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        .posterImg {
+            width: 492px;
+            height: 869px;
+            border-radius: 2px;
+            border: 2px solid #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            .topFont {
+                width: 407px;
+                height: 30px;
+                background: url(https://huanghe.ronghuiad.com/tempAssets/images/posterPage/topFont.png)
+                    no-repeat;
+                background-size: 100% 100%;
+                position: absolute;
+                left: 50%;
+                margin-left: -(407px/2);
+                top: -50px;
+            }
+            .botFont {
+                width: 345px;
+                height: 68px;
+                background: url(https://huanghe.ronghuiad.com/tempAssets/images/posterPage/botFont.png)
+                    no-repeat;
+                background-size: 100% 100%;
+                position: absolute;
+                left: 50%;
+                margin-left: -(345px/2);
+                bottom: -90px;
+            }
+            .poster {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .btnBox {
+            width: 601px;
+            height: 60px;
+            background: url(https://huanghe.ronghuiad.com/tempAssets/images/posterPage/posterBtn.png)
+                no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+            left: 50%;
+            margin-left: -(601px/2);
+            bottom: 100px;
+            .lbtn {
+                width: 184px;
+                height: 60px;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .rbtn {
+                width: 340px;
+                height: 60px;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
+    .shareTipBox {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 101;
+        .shareTip {
+            background: url(https://huanghe.ronghuiad.com/tempAssets/images/posterPage/shareTip.png)
+                no-repeat;
+            background-size: 100% 100%;
+            width: 255px;
+            height: 196px;
+            position: absolute;
+            top: 20px;
+            right: 80px;
+        }
+    }
+    .golotteryBox {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 102;
+        .golottery {
+            background: url(https://huanghe.ronghuiad.com/tempAssets/images/posterPage/golottery.png)
+                no-repeat;
+            background-size: 100% 100%;
+            width: 685px;
+            height: 595px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            .golotteryBtn {
+                width: 222px;
+                height: 74px;
+                position: absolute;
+                top: 363px;
+                left: 50%;
+                transform: translateX(-51%);
+            }
+        }
+    }
+}
+/* prettier-ignore */
+@media screen and (max-height: 723Px) {
+    .posterPage{
+      .foreground{
+        bottom: -160px;
+      } 
+      .mainBox{
+        .posterImg{
+            transform: translate(-50%, -50%) scale(0.8);
+          }  
+      }
+      
+    }
+}

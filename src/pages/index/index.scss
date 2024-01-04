@@ -1,0 +1,393 @@
+.page {
+    background-image: url("https://huanghe.ronghuiad.com/tempAssets/images/bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.bigTitleBox {
+    width: 605px;
+    height: 346px;
+
+    position: absolute;
+    left: 68px;
+    top: 50%;
+    margin-top: 323px - 780px;
+
+    .bigTitle {
+        width: 100%;
+        height: 100%;
+        background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031907892942403019.png);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: 0% 0%;
+    }
+    .fireworks1 {
+        height: 73px;
+        width: 75px;
+        background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031907906417574172.png);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: 0% 0%;
+        position: absolute;
+        top: 0;
+        left: 183px;
+        animation: sc 1s infinite linear;
+    }
+    @keyframes sc {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+    .fireworks2 {
+        width: 95px;
+        height: 173px;
+        position: absolute;
+        right: -39px;
+        top: 209px;
+        .firework2Line {
+            background: url("https://huanghe.ronghuiad.com/tempAssets/images/fire2line.png")
+                no-repeat center;
+            background-size: 100% 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 95px;
+            height: 71px;
+            animation: fireA 1s linear infinite;
+        }
+        @keyframes fireA {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(25px);
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+        }
+        .firework2Fire {
+            width: 95px;
+            height: 95px;
+            background: url("https://huanghe.ronghuiad.com/tempAssets/images/fire2.png")
+                no-repeat center;
+            background-size: 100% 100%;
+            position: absolute;
+            top: 0;
+            animation: fireB 1.5s linear infinite;
+            animation-delay: 1s;
+        }
+        @keyframes fireB {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+    }
+    .font {
+        width: 533px;
+        height: 106px;
+        background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031907906579141148.png);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: 0% 0%;
+        position: absolute;
+        left: 50%;
+        margin-left: -(533px / 2);
+        bottom: -141px;
+    }
+}
+
+.bottomBox {
+    width: 100%;
+    height: 497px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    .cloud3 {
+        width: 165px;
+        height: 141px;
+        background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031907898542712009.png);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: 0% 0%;
+        position: absolute;
+        right: 0;
+        bottom: 80px;
+        z-index: 1;
+    }
+    .bodyBox {
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        .body1 {
+            width: 149px;
+            height: 298px;
+            background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031920749148917670.png);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-position: 0% 0%;
+            position: absolute;
+            left: 0;
+            top: -289px;
+        }
+        .body2 {
+            width: 193px;
+            height: 330px;
+            background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031920749157754833.png);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-position: 0% 0%;
+            position: absolute;
+            left: 0;
+            top: 21px;
+        }
+
+        .body3 {
+            width: 476px;
+            height: 497px;
+            background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031920749165453591.png);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-position: 0% 0%;
+            position: absolute;
+            left: 91px;
+            bottom: 0;
+        }
+        .body4 {
+            width: 298px;
+            height: 348px;
+            background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031920749127709790.png);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-position: 0% 0%;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .body5 {
+            width: 160px;
+            height: 259px;
+            background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031920749092893215.png);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-position: 0% 0%;
+            position: absolute;
+            right: 0;
+            top: -230px;
+        }
+    }
+
+    .cloud2 {
+        width: 94px;
+        height: 62px;
+        background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031907904779945644.png);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: 0% 0%;
+        position: absolute;
+        right: 177px;
+        top: 312px;
+        z-index: 3;
+    }
+    .cloud1 {
+        width: 230px;
+        height: 153px;
+        background-image: url(https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17031907904700091801.png);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: 0% 0%;
+        position: absolute;
+        left: 28px;
+        top: 270px;
+        z-index: 3;
+    }
+}
+.loadBox {
+    width: 335px;
+    height: 23px;
+    position: absolute;
+    top: 50%;
+
+    left: 50%;
+    margin-left: -(335px/2);
+    margin-top: 100px;
+    .loadPreB {
+        border-radius: 10px;
+        border: 2px solid #000;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+    }
+    .loadPre {
+        width: 0;
+        height: 100%;
+        background-image: linear-gradient(to right, #ffe57a, #d7a72b);
+        border-right: 2px solid #000;
+    }
+    .loadFont {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        font-size: 25px;
+        color: #fff;
+    }
+}
+.beginBtn {
+    background: url("https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6583613728456c00116b5219/17032122890222878158.png")
+        no-repeat center;
+    width: 264px;
+    height: 175px;
+    position: absolute;
+    background-size: 100% auto;
+
+    top: 50%;
+    margin-top: 36px;
+    left: 50%;
+    margin-left: -(264px/2);
+    z-index: 5;
+    animation: rs 0.75s linear infinite;
+}
+
+@keyframes rs {
+    0% {
+        transform: scale(0.8) rotate(0deg);
+    }
+    25% {
+        transform: scale(0.9) rotate(5deg);
+    }
+    50% {
+        transform: scale(1) rotate(0deg);
+    }
+    75% {
+        transform: scale(0.9) rotate(-5deg);
+    }
+    100% {
+        transform: scale(0.8) rotate(0deg);
+    }
+}
+
+
+.body1Ani {
+    // animation: body1Ani 1s 1 cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    animation: body1Ani 1s 1 ease-in-out;
+}
+.body2Ani {
+    animation: body2Ani 1s 1 ease-in-out;
+}
+.body3Ani {
+    animation: body3Ani 1s 1 ease-in-out;
+}
+.body4Ani {
+    animation: body4Ani 1s 1 ease-in-out;
+}
+.body5Ani {
+    animation: body5Ani 1s 1 ease-in-out;
+}
+@keyframes body1Ani {
+    0% {
+        transform: translate(-70px, 50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes body2Ani {
+    0% {
+        transform: translate(-90px, 50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes body3Ani {
+    0% {
+        transform: translate(0px, 260px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes body4Ani {
+    0% {
+        transform: translate(100px, 50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes body5Ani {
+    0% {
+        transform: translate(70px, 50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+/* prettier-ignore */
+@media screen and (max-height: 723Px) {
+
+    .page {
+        
+        .bottomBox{
+            bottom: -50px;
+        }
+        .bigTitleBox{
+            .font{
+                bottom: -116px;
+            }
+        }
+        .beginBtn{
+            margin-top: 11px;
+        }
+       
+    }
+    
+  
+}
