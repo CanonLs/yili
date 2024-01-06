@@ -24,7 +24,13 @@ export default defineConfig(async (merge, { command, mode }) => {
             options: {},
         },
         framework: "react",
-        compiler: "webpack5",
+        compiler: {
+            type: "webpack5",
+            prebundle: {
+                enable: false,
+                force: true,
+            },
+        },
         cache: {
             enable: true, // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
         },
@@ -84,22 +90,22 @@ export default defineConfig(async (merge, { command, mode }) => {
             },
         },
         plugins: [
-            [
-                "@tarojs/plugin-inject",
-                {
-                    // 配置项
-                    components: {
-                        XrSence: {},
-                        XrMesh: {},
-                        XrCamera: {},
-                    },
-                    componentsMap: {
-                        XrSence: "xr-sence",
-                        XrMesh: "xr-mesh",
-                        XrCamera: "xr-camera",
-                    },
-                },
-            ],
+            // [
+            //     "@tarojs/plugin-inject",
+            //     {
+            //         // 配置项
+            //         components: {
+            //             XrSence: {},
+            //             XrMesh: {},
+            //             XrCamera: {},
+            //         },
+            //         componentsMap: {
+            //             XrSence: "xr-sence",
+            //             XrMesh: "xr-mesh",
+            //             XrCamera: "xr-camera",
+            //         },
+            //     },
+            // ],
         ],
     };
     if (process.env.NODE_ENV === "development") {

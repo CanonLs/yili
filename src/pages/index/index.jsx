@@ -1,7 +1,9 @@
-import { View } from "@tarojs/components";
-import Taro, { useLoad } from "@tarojs/taro";
+import { View, Canvas } from "@tarojs/components";
+import Taro, { useLoad, useReady } from "@tarojs/taro";
 import { useState, useEffect } from "react";
+import { JSONStringify } from "../../utils/jsonCtrl";
 import "./index.scss";
+import LoadPre from "../../components/loadPre/index";
 import TopIcon from "../../components/topIcon/index";
 
 let animation = Taro.createAnimation({
@@ -13,40 +15,21 @@ let animation = Taro.createAnimation({
 
 export default function Index() {
     const [isload, setIsload] = useState(false);
-    const [preNum, setPreNum] = useState(0);
     const [hideGroup, setHideGroup] = useState(false);
 
     useLoad(() => {
         console.log("Page loaded");
     });
-    useEffect(() => {
-        loadFn().then(() => {
-            console.log("loading---end");
-            setIsload(true);
-        });
-    }, []);
+    useReady(() => {
+        console.log("Page Ready");
+    });
     const getTopIconProp = (val) => {
         setHideGroup(val);
     };
-
-    //loading进度条
-    const loadFn = () => {
-        return new Promise((rev) => {
-            let num = 0;
-            let timer = setInterval(() => {
-                if (num > 100) {
-                    clearInterval(timer);
-                    setTimeout(() => {
-                        rev();
-                    }, 2000);
-                    return false;
-                }
-                setPreNum(num);
-                num++;
-            }, 3000 / 100);
-        });
+    //LoadPre组件回调
+    const loadFn = (state) => {
+        setIsload(state);
     };
-
     //跳转到AR识别页面
     const goAR = () => {
         Taro.navigateTo({
@@ -71,15 +54,7 @@ export default function Index() {
                 </View>
                 <View className={`font ${isload ? "isShow" : "isHied"}`}></View>
             </View>
-            <View className={`loadBox ${!isload ? "isShow" : "isHied"}`}>
-                <View className="loadPreB">
-                    <View
-                        className="loadPre"
-                        style={{ width: `${preNum}%` }}
-                    ></View>
-                </View>
-                <View className="loadFont">{`${preNum}%`}</View>
-            </View>
+            <LoadPre isLoad={loadFn} ingotsLimi={3.24}></LoadPre>
             <View
                 className={`beginBtn ${
                     isload && !hideGroup ? "isShow" : "isHied"
@@ -94,9 +69,10 @@ export default function Index() {
                     <View className="body4 body4Ani"></View>
                     <View className="body5 body5Ani"></View>
                 </View>
-                <View className="cloud3"></View>
-                <View className="cloud1"></View>
-                <View className="cloud2"></View>
+                <View className="cloud"></View>
+                {/* <View className="cloud3"></View> */}
+                {/* <View className="cloud1"></View> */}
+                {/* <View className="cloud2"></View> */}
             </View>
         </View>
     );

@@ -2,6 +2,7 @@ import { View, Image } from "@tarojs/components";
 import Taro, { useLoad } from "@tarojs/taro";
 import { useState, useEffect } from "react";
 import TopIcon from "../../components/topIcon/index";
+import LoadPre from "../../components/loadPre/index";
 
 import "./index.scss";
 const slideBoxImgArr = [
@@ -34,33 +35,11 @@ export default function index() {
         addImageInfo();
         loadPosterImg();
     });
-    useEffect(() => {
-        loadFn().then(() => {
-            console.log("loading---end");
-            // setIsload(true);
-            setShowPoster(true);
-        });
-    }, []);
-    useEffect(() => {
-        if (beginEff) slideImgFn();
-    }, [preNum, beginEff]);
-    //loading进度条
-    const loadFn = () => {
-        return new Promise((rev) => {
-            let num = 0;
-            let timer = setInterval(() => {
-                if (num > 100) {
-                    clearInterval(timer);
-                    setTimeout(() => {
-                        rev();
-                    }, 2000);
-                    return false;
-                }
-                setPreNum(num);
-                num++;
-            }, 5000 / 100);
-        });
+    //loading end
+    const isLoad = (state) => {
+        setShowPoster(state);
     };
+
     //加载所有图片
     const addImageInfo = () => {
         const imgArr = slideBoxImgArr.map((tmp) => {
@@ -99,7 +78,7 @@ export default function index() {
         Promise.all(imgArr).then((res) => {
             console.log(posterImgNum);
             setPosterImg(res);
-            setPosterImgRe(res[posterImgNum].path);
+            setPosterImgRe(res[randomNum()].path);
         });
     };
     //随机数0-9
@@ -118,37 +97,7 @@ export default function index() {
             Taro.hideLoading();
         }
     };
-    //中间轮播图片
-    const slideImgFn = () => {
-        switch (parseInt(preNum / 20)) {
-            case 0:
-                setSlideChange(false);
-                setShowImg(slideImg[0]);
-                setSlideChange(true);
-                break;
-            case 1:
-                setSlideChange(false);
-                setShowImg(slideImg[1]);
-                setSlideChange(true);
-                break;
-            case 2:
-                setSlideChange(false);
-                setShowImg(slideImg[2]);
-                setSlideChange(true);
-                break;
-            case 3:
-                setSlideChange(false);
-                setShowImg(slideImg[3]);
-                setSlideChange(true);
-                break;
-            default:
-                setSlideChange(false);
-                setShowImg(slideImg[4]);
-                setSlideChange(true);
 
-                break;
-        }
-    };
     //保存图片
     const saveImg = () => {
         console.log(posterImgRe);
@@ -185,38 +134,24 @@ export default function index() {
             },
         });
     };
+    //去抽奖页面
+    const goToLottery = () => {};
     return (
         <View className="posterPage">
             <TopIcon path="poster" />
             <View className={`foreground ${!showPoster ? "isShow" : "isHied"}`}>
                 <View className="fFont"></View>
-                <View className="slideBox">
-                    <Image
-                        className={`sbImg ${
-                            slideChange ? "isFastShow" : "isFastHied"
-                        }`}
-                        src={showImg.path}
-                        alt=""
-                        style={{
-                            width: `${showImg.width}rpx`,
-                            height: `${showImg.height}rpx`,
-                        }}
-                    />
-                </View>
-                <View className="preBox">
-                    <View
-                        className="Ingots"
-                        style={{ left: `${preNum * 3.26}rpx` }}
-                    ></View>
-
-                    <View className="prePro">
-                        <View
-                            className="loadPre"
-                            style={{ width: `${preNum}%` }}
-                        ></View>
-                    </View>
-                    <View className="loadFont">{`${preNum}%`}</View>
-                </View>
+                <View className="lbody"></View>
+                <View className="rbody"></View>
+                <LoadPre
+                    style={{
+                        top: "400rpx",
+                        width: "284rpx",
+                        "margin-left": "-142rpx",
+                    }}
+                    ingotsLimi={2.84}
+                    isLoad={isLoad}
+                ></LoadPre>
             </View>
             <View className={`mainBox ${showPoster ? "isShow" : "isHied"}`}>
                 <View className="posterImg">
@@ -230,11 +165,8 @@ export default function index() {
                     <View className="botFont"></View>
                 </View>
                 <View className="btnBox">
-                    <View className="lbtn" onClick={() => randomImg()}></View>
-                    <View
-                        className="rbtn"
-                        onClick={() => setShowShareBox(true)}
-                    ></View>
+                    <View className="lbtn" onClick={() => goToLottery()}></View>
+                    <View className="rbtn" onClick={saveImg}></View>
                 </View>
             </View>
             <View

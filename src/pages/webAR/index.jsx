@@ -1,13 +1,20 @@
-import { View, Camera, Canvas, XrSence } from "@tarojs/components";
-import Taro, { useLoad } from "@tarojs/taro";
+import { View, Camera, Canvas } from "@tarojs/components";
+import Taro, { useLoad, useReady } from "@tarojs/taro";
 import { useState, useEffect } from "react";
 import { WebAr } from "../../utils/WebAr";
 import "./index.scss";
-import XrFrame from "../../components/xrFrame/index";
 
+import SfAni from "../../components/sfAni/index";
+const sfAniImgInfo = {
+    href: "https://huanghe.ronghuiad.com/3d/caisheng/",
+    type: "png",
+    length: 117,
+};
 export default function Index() {
     const [webArCtr, setWebArCtr] = useState();
-    const [showBtn, setShowBtn] = useState(false);
+    const [showBtn, setShowBtn] = useState(true);
+    const [imgArr, setImgArr] = useState([]);
+    const [showCanvas, setShowCanvas] = useState(false);
 
     const CONFIG = {
         token: "", // 认证token, 请从开发者中心获取
@@ -45,6 +52,10 @@ export default function Index() {
                     });
             });
     });
+    useReady(() => {
+        console.log("Page Ready");
+        getTempCas();
+    });
     useEffect(() => {
         Taro.getSetting({
             success: function (res) {
@@ -61,7 +72,6 @@ export default function Index() {
     }, []);
     useEffect(() => {
         if (webArCtr) {
-            console.log("??????????");
             webArFn();
         }
     }, [webArCtr]);
@@ -87,11 +97,48 @@ export default function Index() {
                 duration: 3000,
             });
         });
-        webArCtr.startSearch();
+        ////--------------------------
+        // webArCtr.startSearch();
+    };
+    const getTempCas = () => {
+        Taro.createSelectorQuery()
+            .select("#tempCas") // 在 WXML 中填入的 id
+            .fields({ node: true, size: true })
+            .exec((res) => {
+                // Canvas 对象
+                console.log(res);
+                const canvas = res[0].node;
+
+                // 渲染上下文
+                loadPosterImg(canvas);
+            });
+    };
+    const loadPosterImg = (canvas) => {
+        const posterImgArr = [];
+        for (let i = 1; i < sfAniImgInfo.length; i++) {
+            posterImgArr.push(sfAniImgInfo.href + i + "." + sfAniImgInfo.type);
+        }
+        const imgArr = posterImgArr.map((tmp) => {
+            return new Promise((resolve, reject) => {
+                const img = canvas.createImage();
+                img.src = tmp;
+
+                img.onload = () => {
+                    resolve(img);
+                };
+            });
+        });
+        Promise.all(imgArr).then((res) => {
+            console.log(typeof res);
+            setImgArr(res);
+        });
     };
 
     return (
         <View className="arPage">
+            {/* <XR-FRAME></XR-FRAME> */}
+            {showCanvas && <SfAni imgArr={imgArr}></SfAni>}
+
             <Camera
                 id="camera"
                 dframe-size="medium"
@@ -101,12 +148,7 @@ export default function Index() {
                 resolution="medium"
                 flash="off"
             ></Camera>
-            <XrFrame
-                style={{
-                    width: "100%",
-                    height: "100%",
-                }}
-            />
+
             <View className="arFirstBox">
                 <Canvas
                     type="2d"
@@ -119,11 +161,17 @@ export default function Index() {
                     <View
                         className="arBtn"
                         onClick={() => {
-                            beginIdentify();
+                            // beginIdentify();
+                            setShowCanvas(true);
                         }}
                     ></View>
                 )}
             </View>
+            <Canvas
+                type="2d"
+                id="tempCas"
+                style={{ width: "1px", height: "1px" }}
+            ></Canvas>
         </View>
     );
 }

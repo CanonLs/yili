@@ -1,0 +1,9 @@
+
+
+<view>
+  <xr-scene>
+    <xr-mesh node-id="cube" geometry="cube" />
+    <xr-camera clear-color="0.4 0.8 0.6 1" position="0 1 4" target="cube" camera-orbit-control />
+  </xr-scene>
+</view>
+  

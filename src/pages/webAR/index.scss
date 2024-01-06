@@ -22,38 +22,50 @@
             top: 0;
         }
         .arFont {
-            width: 535px;
-            height: 27px;
-            background: url("../../assets/arfont.png") no-repeat center;
+            width: 578px;
+            height: 37px;
+            background: url("https://huanghe.ronghuiad.com/tempAssets/images/arfont.png")
+                no-repeat center;
             background-size: 100% 100%;
             position: absolute;
             top: 50%;
             left: 50%;
-            margin-left: calc(-535px / 2);
+            margin-left: calc(-578px / 2);
             margin-top: calc(294px - 780px);
         }
         .arLogo {
-            width: 639px;
-            height: 483px;
-            background: url("../../assets/arLogo.png") no-repeat center;
+            width: 582px;
+            height: 855px;
+            background: url("https://huanghe.ronghuiad.com/tempAssets/images/arLogo.png")
+                no-repeat center;
             background-size: 100% 100%;
 
             position: absolute;
             top: 50%;
             left: 50%;
-            margin-left: calc(-639px / 2);
-            margin-top: calc(453px - 780px);
+            margin-left: calc(-582px / 2);
+            margin-top: calc(393px - 780px);
         }
         .arBtn {
             width: 547px;
             height: 133px;
-            background: url("../../assets/arbtn.png") no-repeat center;
+            background: url("https://huanghe.ronghuiad.com/tempAssets/images/arbtn.png")
+                no-repeat center;
             background-size: 100% 100%;
 
             position: absolute;
             left: 50%;
             margin-left: calc(-547px / 2);
-            bottom: 200px;
+            bottom: 50px;
         }
     }
+}
+/* prettier-ignore */
+@media screen and (max-height: 723Px) {
+
+   
+    .arLogo{
+        transform: scale(0.8);
+    }
+  
 }

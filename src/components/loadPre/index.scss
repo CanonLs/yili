@@ -1,0 +1,62 @@
+.loadBox {
+    width: 335px;
+    height: 23px;
+    position: absolute;
+    top: 50%;
+
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 100px;
+    .ingots {
+        width: 39px;
+        height: 23px;
+        position: absolute;
+        left: 0px;
+        margin-left: -26px;
+        background-image: url("https://huanghe.ronghuiad.com/tempAssets/images/Ingots.png");
+
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        bottom: 30px;
+        animation: IngotsAni 1s linear infinite;
+    }
+    @keyframes IngotsAni {
+        0% {
+            transform: scale(0.8) rotate(0deg);
+        }
+        25% {
+            transform: scale(0.9) rotate(5deg);
+        }
+        50% {
+            transform: scale(1) rotate(0deg);
+        }
+        75% {
+            transform: scale(0.9) rotate(-5deg);
+        }
+        100% {
+            transform: scale(0.8) rotate(0deg);
+        }
+    }
+    .loadPreB {
+        border-radius: 10px;
+        // border: 2px solid #000;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+    }
+    .loadPre {
+        width: 0;
+        height: 100%;
+        // background-image: linear-gradient(to right, #ffe57a, #d7a72b);
+        background: #ffe57a;
+        // border-right: 2px solid #000;
+    }
+    .loadFont {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        font-size: 25px;
+        color: #fff;
+    }
+}
