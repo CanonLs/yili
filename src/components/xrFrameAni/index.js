@@ -11,7 +11,6 @@ Component({
     lifetimes: {
         attached: function () {
             var that = this;
-            that.arrayFn();
             // 在组件实例进入页面节点树时执行
             console.log("!1111");
         },
@@ -23,5 +22,9 @@ Component({
     /**
      * 组件的方法列表
      */
-    methods: {},
+    methods: {
+        handleReady: () => {
+            console.log("33333333");
+        },
+    },
 });

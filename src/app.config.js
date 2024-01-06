@@ -1,5 +1,5 @@
 export default defineAppConfig({
-    pages: ["pages/webAR/index", "pages/index/index", "pages/Poster/index"],
+    pages: ["pages/index/index", "pages/Poster/index", "pages/webAR/index"],
     window: {
         backgroundTextStyle: "light",
         navigationBarBackgroundColor: "#c6151d",

@@ -12,9 +12,10 @@ const sfAniImgInfo = {
 };
 export default function Index() {
     const [webArCtr, setWebArCtr] = useState();
-    const [showBtn, setShowBtn] = useState(true);
+    const [showBtn, setShowBtn] = useState(false);
     const [imgArr, setImgArr] = useState([]);
     const [showCanvas, setShowCanvas] = useState(false);
+    const [showHand, setShowHand] = useState(false);
 
     const CONFIG = {
         token: "", // 认证token, 请从开发者中心获取
@@ -98,7 +99,7 @@ export default function Index() {
             });
         });
         ////--------------------------
-        // webArCtr.startSearch();
+        webArCtr.startSearch();
     };
     const getTempCas = () => {
         Taro.createSelectorQuery()
@@ -129,16 +130,18 @@ export default function Index() {
             });
         });
         Promise.all(imgArr).then((res) => {
-            console.log(typeof res);
             setImgArr(res);
         });
+    };
+    const showHandState = (e) => {
+        setShowHand(true);
     };
 
     return (
         <View className="arPage">
-            {/* <XR-FRAME></XR-FRAME> */}
-            {showCanvas && <SfAni imgArr={imgArr}></SfAni>}
-
+            {showCanvas && (
+                <SfAni imgArr={imgArr} showHandState={showHandState}></SfAni>
+            )}
             <Camera
                 id="camera"
                 dframe-size="medium"
@@ -149,24 +152,36 @@ export default function Index() {
                 flash="off"
             ></Camera>
 
-            <View className="arFirstBox">
+            <View
+                className={`arFirstBox ${
+                    !showCanvas ? "isFastShow" : "isFastHied"
+                }`}
+            >
                 <Canvas
                     type="2d"
                     id="canvas"
                     style="width:1px; height: 1px;"
                 ></Canvas>
-                <View className="arFont"></View>
-                <View className="arLogo"></View>
-                {showBtn && (
+                <View className="arLogo">
+                    <View className="arFont"></View>
                     <View
-                        className="arBtn"
+                        className={`arBtn ${showBtn ? "isShow" : "isHied"}`}
                         onClick={() => {
                             // beginIdentify();
                             setShowCanvas(true);
                         }}
                     ></View>
-                )}
+                </View>
             </View>
+
+            <View
+                className={`clickHand ${
+                    showHand ? "isFastShow" : "isFastHied"
+                }`}
+                onClick={() => {
+                    beginIdentify();
+                }}
+            ></View>
             <Canvas
                 type="2d"
                 id="tempCas"

@@ -1,10 +1,11 @@
 import { View } from "@tarojs/components";
-import Taro, { useLoad } from "@tarojs/taro";
+import Taro, { useLoad, useReady } from "@tarojs/taro";
 import { useState, useEffect } from "react";
 let micContext = Taro.createInnerAudioContext();
 micContext.src = "https://huanghe.ronghuiad.com/tempAssets/mic.mp3";
 export default function index(props) {
     const [isMicPlay, setIsMicPlay] = useState(true);
+    const [tmpUrl, setTmpUrl] = useState(null);
     useEffect(() => {
         audioPlay();
     }, []);
@@ -27,7 +28,13 @@ export default function index(props) {
     useEffect(() => {
         if (props.path == "index") props.getTopIconProp(showExplain);
     }, [showExplain]);
-
+    //跳转到我的奖品
+    const goMyPrize = () => {
+        Taro.navigateTo({
+            url: props.tmpPath,
+        });
+    };
+    //
     return (
         <View className="topIcon">
             <image
@@ -59,7 +66,12 @@ export default function index(props) {
                         }
                     }}
                 ></View>
-                <View className="rbtn"></View>
+                <View
+                    className="rbtn"
+                    onClick={() => {
+                        goMyPrize();
+                    }}
+                ></View>
             </View>
             <View
                 className={`explainBox ${!showExplain ? "explainBoxTop" : ""}`}

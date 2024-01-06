@@ -3,7 +3,8 @@ import Taro, { useLoad, useReady } from "@tarojs/taro";
 import { useState, useEffect, useRef } from "react";
 
 export default function index(props) {
-    const [data, setData] = useState(props.imgArr);
+    const { imgArr, showHandState } = props;
+    const [data, setData] = useState(imgArr);
 
     const canvas = useRef(null);
     useEffect(() => {
@@ -51,6 +52,7 @@ export default function index(props) {
             console.log(num);
             if (num >= data.length) {
                 clearInterval(str);
+                showHandState(true);
             }
         }, 1000 / 24);
     };

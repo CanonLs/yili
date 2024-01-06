@@ -16,12 +16,22 @@ let animation = Taro.createAnimation({
 export default function Index() {
     const [isload, setIsload] = useState(false);
     const [hideGroup, setHideGroup] = useState(false);
+    const [tmpPath, setTmpPath] = useState(null);
 
     useLoad(() => {
         console.log("Page loaded");
     });
     useReady(() => {
         console.log("Page Ready");
+        Taro.request({
+            url: `https://huanghe.ronghuiad.com/api/index.php/YiliARApi/showLotteryButton`,
+            method: "POST",
+            success: (res) => {
+                const { url, lottery_url } = res.data;
+                setTmpPath(lottery_url);
+                Taro.setStorageSync("url", url);
+            },
+        });
     });
     const getTopIconProp = (val) => {
         setHideGroup(val);
@@ -43,6 +53,7 @@ export default function Index() {
                 getTopIconProp={getTopIconProp}
                 isload={isload}
                 path={"index"}
+                tmpPath={tmpPath}
             ></TopIcon>
 
             <View className={`bigTitleBox ${!hideGroup ? "isShow" : "isHied"}`}>

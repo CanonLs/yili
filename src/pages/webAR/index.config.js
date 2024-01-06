@@ -1,5 +1,5 @@
 export default definePageConfig({
     usingComponents: {
-        "XR-FRAME": "../../components/xrFrameAni/index",
+        "xr-frames": "../../components/xrFrameAni/index",
     },
 });

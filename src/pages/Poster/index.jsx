@@ -5,13 +5,7 @@ import TopIcon from "../../components/topIcon/index";
 import LoadPre from "../../components/loadPre/index";
 
 import "./index.scss";
-const slideBoxImgArr = [
-    "https://huanghe.ronghuiad.com/tempAssets/images/posterPage/f1.png",
-    "https://huanghe.ronghuiad.com/tempAssets/images/posterPage/f2.png",
-    "https://huanghe.ronghuiad.com/tempAssets/images/posterPage/f3.png",
-    "https://huanghe.ronghuiad.com/tempAssets/images/posterPage/f4.png",
-    "https://huanghe.ronghuiad.com/tempAssets/images/posterPage/f5.png",
-];
+
 const posterBoxImgObj = {
     href: "https://huanghe.ronghuiad.com/tempAssets/images/posterPage/posterBox/",
     type: "jpg",
@@ -19,44 +13,27 @@ const posterBoxImgObj = {
 };
 
 export default function index() {
-    const [preNum, setPreNum] = useState(0);
-    const [slideImg, setSlideImg] = useState([]);
     const [posterImg, setPosterImg] = useState([]);
     const [posterImgRe, setPosterImgRe] = useState();
     const [posterImgNum, setPosterImgNum] = useState(0);
-    const [showImg, setShowImg] = useState({});
-    const [beginEff, setBeginEff] = useState(false);
-    const [showShareBox, setShowShareBox] = useState(false);
-    const [golotteryBox, setGolotteryBox] = useState(false);
     const [showPoster, setShowPoster] = useState(false);
-    const [slideChange, setSlideChange] = useState(true);
+    const [tmpPath, setTmpPath] = useState("");
 
     useLoad(() => {
-        addImageInfo();
         loadPosterImg();
+        Taro.getStorage({
+            key: "url",
+            success: function (res) {
+                console.log(res.data);
+                setTmpPath(res.data);
+            },
+        });
     });
     //loading end
     const isLoad = (state) => {
         setShowPoster(state);
     };
 
-    //加载所有图片
-    const addImageInfo = () => {
-        const imgArr = slideBoxImgArr.map((tmp) => {
-            return new Promise((resolve, reject) => {
-                Taro.getImageInfo({
-                    src: tmp,
-                    success(res) {
-                        resolve(res);
-                        setSlideImg((slideImg) => [...slideImg, res]);
-                    },
-                });
-            });
-        });
-        Promise.all(imgArr).then((res) => {
-            setBeginEff(true);
-        });
-    };
     //加载海报图片
     const loadPosterImg = () => {
         const posterImgArr = [];
@@ -135,7 +112,11 @@ export default function index() {
         });
     };
     //去抽奖页面
-    const goToLottery = () => {};
+    const goToLottery = () => {
+        Taro.navigateTo({
+            url: tmpPath,
+        });
+    };
     return (
         <View className="posterPage">
             <TopIcon path="poster" />
@@ -167,19 +148,6 @@ export default function index() {
                 <View className="btnBox">
                     <View className="lbtn" onClick={() => goToLottery()}></View>
                     <View className="rbtn" onClick={saveImg}></View>
-                </View>
-            </View>
-            <View
-                className={`shareTipBox ${showShareBox ? "isShow" : "isHied"}`}
-                onClick={() => setShowShareBox(false)}
-            >
-                <View className="shareTip"></View>
-            </View>
-            <View
-                className={`golotteryBox ${golotteryBox ? "isShow" : "isHied"}`}
-            >
-                <View className="golottery">
-                    <View className="golotteryBtn"></View>
                 </View>
             </View>
         </View>
