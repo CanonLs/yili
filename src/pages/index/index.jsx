@@ -1,10 +1,10 @@
 import { View, Canvas } from "@tarojs/components";
-import Taro, { useLoad, useReady } from "@tarojs/taro";
+import Taro, { useLoad, useReady, useShareAppMessage } from "@tarojs/taro";
 import { useState, useEffect } from "react";
-import { JSONStringify } from "../../utils/jsonCtrl";
 import "./index.scss";
 import LoadPre from "../../components/loadPre/index";
 import TopIcon from "../../components/topIcon/index";
+import ShareCon from "../shareCon/index";
 
 let animation = Taro.createAnimation({
     transformOrigin: "50% 50%",
@@ -17,6 +17,7 @@ export default function Index() {
     const [isload, setIsload] = useState(false);
     const [hideGroup, setHideGroup] = useState(false);
     const [tmpPath, setTmpPath] = useState(null);
+    const [tmpAppID, setTmpAppID] = useState("");
 
     useLoad(() => {
         console.log("Page loaded");
@@ -27,9 +28,11 @@ export default function Index() {
             url: `https://huanghe.ronghuiad.com/api/index.php/YiliARApi/showLotteryButton`,
             method: "POST",
             success: (res) => {
-                const { url, lottery_url } = res.data;
+                const { url, lottery_url, appId } = res.data;
                 setTmpPath(lottery_url);
+                setTmpAppID(appId);
                 Taro.setStorageSync("url", url);
+                Taro.setStorageSync("appId", appId);
             },
         });
     });
@@ -49,11 +52,13 @@ export default function Index() {
 
     return (
         <View className="page">
+            <ShareCon></ShareCon>
             <TopIcon
                 getTopIconProp={getTopIconProp}
                 isload={isload}
                 path={"index"}
                 tmpPath={tmpPath}
+                tmpAppID={tmpAppID}
             ></TopIcon>
 
             <View className={`bigTitleBox ${!hideGroup ? "isShow" : "isHied"}`}>

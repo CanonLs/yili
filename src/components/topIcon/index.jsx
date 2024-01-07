@@ -30,8 +30,16 @@ export default function index(props) {
     }, [showExplain]);
     //跳转到我的奖品
     const goMyPrize = () => {
-        Taro.navigateTo({
-            url: props.tmpPath,
+        const { tmpPath, tmpAppID } = props;
+
+        Taro.navigateToMiniProgram({
+            appId: tmpAppID,
+            path: tmpPath,
+
+            envVersion: "develop",
+            success(res) {
+                // 打开成功
+            },
         });
     };
     //

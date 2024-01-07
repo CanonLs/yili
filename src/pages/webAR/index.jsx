@@ -3,6 +3,7 @@ import Taro, { useLoad, useReady } from "@tarojs/taro";
 import { useState, useEffect } from "react";
 import { WebAr } from "../../utils/WebAr";
 import "./index.scss";
+import ShareCon from "../shareCon/index";
 
 import SfAni from "../../components/sfAni/index";
 const sfAniImgInfo = {
@@ -55,7 +56,7 @@ export default function Index() {
     });
     useReady(() => {
         console.log("Page Ready");
-        getTempCas();
+        // getTempCas();
     });
     useEffect(() => {
         Taro.getSetting({
@@ -101,27 +102,31 @@ export default function Index() {
         ////--------------------------
         webArCtr.startSearch();
     };
-    const getTempCas = () => {
-        Taro.createSelectorQuery()
-            .select("#tempCas") // 在 WXML 中填入的 id
-            .fields({ node: true, size: true })
-            .exec((res) => {
-                // Canvas 对象
-                console.log(res);
-                const canvas = res[0].node;
-
-                // 渲染上下文
-                loadPosterImg(canvas);
-            });
+    //相机调用成功
+    const cameraReady = () => {
+        console.log("camera ok");
+        getTempCas();
     };
+    const getTempCas = () => {
+        const offCanvas = Taro.createOffscreenCanvas({
+            type: "2d",
+            width: 1,
+            height: 1,
+        });
+
+        loadPosterImg(offCanvas);
+    };
+
     const loadPosterImg = (canvas) => {
         const posterImgArr = [];
         for (let i = 1; i < sfAniImgInfo.length; i++) {
             posterImgArr.push(sfAniImgInfo.href + i + "." + sfAniImgInfo.type);
         }
-        const imgArr = posterImgArr.map((tmp) => {
-            return new Promise((resolve, reject) => {
-                const img = canvas.createImage();
+
+        const imgArr = posterImgArr.map(async (tmp) => {
+            return await new Promise((resolve, reject) => {
+                let img = canvas.createImage();
+
                 img.src = tmp;
 
                 img.onload = () => {
@@ -130,6 +135,7 @@ export default function Index() {
             });
         });
         Promise.all(imgArr).then((res) => {
+            console.log(res);
             setImgArr(res);
         });
     };
@@ -139,13 +145,14 @@ export default function Index() {
 
     return (
         <View className="arPage">
+            <ShareCon></ShareCon>
             {showCanvas && (
                 <SfAni imgArr={imgArr} showHandState={showHandState}></SfAni>
             )}
             <Camera
                 id="camera"
                 dframe-size="medium"
-                bindinitdone="cameraInitDone"
+                onInitDone={cameraReady}
                 mode="normal"
                 device-position="back"
                 resolution="medium"
@@ -182,11 +189,6 @@ export default function Index() {
                     beginIdentify();
                 }}
             ></View>
-            <Canvas
-                type="2d"
-                id="tempCas"
-                style={{ width: "1px", height: "1px" }}
-            ></Canvas>
         </View>
     );
 }

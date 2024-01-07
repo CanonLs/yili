@@ -3,11 +3,12 @@ import Taro, { useLoad } from "@tarojs/taro";
 import { useState, useEffect } from "react";
 import TopIcon from "../../components/topIcon/index";
 import LoadPre from "../../components/loadPre/index";
+import ShareCon from "../shareCon/index";
 
 import "./index.scss";
 
 const posterBoxImgObj = {
-    href: "https://huanghe.ronghuiad.com/tempAssets/images/posterPage/posterBox/",
+    href: "https://huanghe.ronghuiad.com/3d/poster/",
     type: "jpg",
     length: 10,
 };
@@ -18,6 +19,7 @@ export default function index() {
     const [posterImgNum, setPosterImgNum] = useState(0);
     const [showPoster, setShowPoster] = useState(false);
     const [tmpPath, setTmpPath] = useState("");
+    const [tmpAppID, setTmpAppID] = useState("");
 
     useLoad(() => {
         loadPosterImg();
@@ -26,6 +28,13 @@ export default function index() {
             success: function (res) {
                 console.log(res.data);
                 setTmpPath(res.data);
+            },
+        });
+        Taro.getStorage({
+            key: "appId",
+            success: function (res) {
+                console.log(res.data);
+                setTmpAppID(res.data);
             },
         });
     });
@@ -116,10 +125,19 @@ export default function index() {
         Taro.navigateTo({
             url: tmpPath,
         });
+        Taro.navigateToMiniProgram({
+            appId: tmpAppID,
+            path: tmpPath,
+            envVersion: "develop",
+            success(res) {
+                // 打开成功
+            },
+        });
     };
     return (
         <View className="posterPage">
             <TopIcon path="poster" />
+            <ShareCon></ShareCon>
             <View className={`foreground ${!showPoster ? "isShow" : "isHied"}`}>
                 <View className="fFont"></View>
                 <View className="lbody"></View>

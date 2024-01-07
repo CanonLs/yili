@@ -20,7 +20,8 @@ export default defineConfig(async (merge, { command, mode }) => {
         plugins: [],
         defineConstants: {},
         copy: {
-            patterns: [],
+            patterns: [
+            ],
             options: {},
         },
         framework: "react",

@@ -54,7 +54,7 @@ export default function index(props) {
                 clearInterval(str);
                 showHandState(true);
             }
-        }, 1000 / 24);
+        }, 1000 / 18);
     };
     return (
         <Canvas
