@@ -10,7 +10,12 @@ export default function index(props) {
         audioPlay();
     }, []);
     const [showExplain, setShowExplain] = useState(false);
-
+    const [navHeight, setNavHeight] = useState(null);
+    useReady(() => {
+        const sysinfo = Taro.getSystemInfoSync();
+        const h = sysinfo.statusBarHeight + 44;
+        console.log(h);
+    });
     useEffect(() => {
         if (isMicPlay) {
             micContext.play();
@@ -44,7 +49,7 @@ export default function index(props) {
     };
     //
     return (
-        <View className="topIcon">
+        <View className="topIcon" style={{}}>
             <image
                 className="logo"
                 src="https://huanghe.ronghuiad.com/tempAssets/images/logo.png"
@@ -81,6 +86,9 @@ export default function index(props) {
                     }}
                 ></View>
             </View>
+            <View
+                className={`blackShadow ${showExplain ? "isShow" : "isHied"}`}
+            ></View>
             <View
                 className={`explainBox ${!showExplain ? "explainBoxTop" : ""}`}
             >

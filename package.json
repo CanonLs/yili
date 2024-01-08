@@ -10,7 +10,7 @@
     "framework": "React"
   },
   "scripts": {
-    "build:weapp": "taro build --type weapp",
+    "build:weapp": "taro build --type weapp --blended",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
     "build:tt": "taro build --type tt",
@@ -41,6 +41,7 @@
     "@tarojs/components": "3.6.21",
     "@tarojs/helper": "3.6.21",
     "@tarojs/plugin-framework-react": "3.6.21",
+    "@tarojs/plugin-indie": "^0.0.8",
     "@tarojs/plugin-inject": "^3.6.22",
     "@tarojs/plugin-platform-alipay": "3.6.21",
     "@tarojs/plugin-platform-h5": "3.6.21",

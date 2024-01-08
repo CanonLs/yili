@@ -1,10 +1,10 @@
 import { View, Canvas } from "@tarojs/components";
-import Taro, { useLoad, useReady, useShareAppMessage } from "@tarojs/taro";
+import Taro, { useLoad, useReady } from "@tarojs/taro";
 import { useState, useEffect } from "react";
 import "./index.scss";
 import LoadPre from "../../components/loadPre/index";
 import TopIcon from "../../components/topIcon/index";
-import ShareCon from "../shareCon/index";
+import ShareDeploy from "../../components/shareDeploy/index";
 
 let animation = Taro.createAnimation({
     transformOrigin: "50% 50%",
@@ -36,6 +36,7 @@ export default function Index() {
             },
         });
     });
+
     const getTopIconProp = (val) => {
         setHideGroup(val);
     };
@@ -46,13 +47,13 @@ export default function Index() {
     //跳转到AR识别页面
     const goAR = () => {
         Taro.navigateTo({
-            url: "/pages/webAR/index",
+            url: "../webAR/index",
         });
     };
 
     return (
         <View className="page">
-            <ShareCon></ShareCon>
+            <ShareDeploy></ShareDeploy>
             <TopIcon
                 getTopIconProp={getTopIconProp}
                 isload={isload}

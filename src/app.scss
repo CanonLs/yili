@@ -21,7 +21,7 @@ text {
 .topIcon {
     width: 100%;
     position: absolute;
-    top: 0;
+    top: 120px;
     z-index: 100;
 }
 .logo {
@@ -74,7 +74,7 @@ text {
     margin-left: calc(-685px / 2);
     top: 240px;
     // margin-top: 308px - 780px;
-    z-index: 5;
+    z-index: 7;
     transition: all 0.5s;
     opacity: 1;
     visibility: unset;
@@ -125,10 +125,20 @@ text {
     visibility: hidden;
     transition: all 0.3s linear;
 }
+.blackShadow {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 6;
+}
 /* prettier-ignore */
-@media screen and (max-height: 723Px) {
+@media screen and (max-height: 737Px) {
 
     .topIcon {
+        top: 90px;
         .logo {
             top: 20px;
           }

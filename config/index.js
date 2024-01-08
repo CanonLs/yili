@@ -20,8 +20,7 @@ export default defineConfig(async (merge, { command, mode }) => {
         plugins: [],
         defineConstants: {},
         copy: {
-            patterns: [
-            ],
+            patterns: [],
             options: {},
         },
         framework: "react",
@@ -90,24 +89,7 @@ export default defineConfig(async (merge, { command, mode }) => {
                 },
             },
         },
-        plugins: [
-            // [
-            //     "@tarojs/plugin-inject",
-            //     {
-            //         // 配置项
-            //         components: {
-            //             XrSence: {},
-            //             XrMesh: {},
-            //             XrCamera: {},
-            //         },
-            //         componentsMap: {
-            //             XrSence: "xr-sence",
-            //             XrMesh: "xr-mesh",
-            //             XrCamera: "xr-camera",
-            //         },
-            //     },
-            // ],
-        ],
+        plugins: ["@tarojs/plugin-indie"],
     };
     if (process.env.NODE_ENV === "development") {
         // 本地开发构建配置（不混淆压缩）

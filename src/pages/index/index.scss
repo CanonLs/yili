@@ -370,7 +370,7 @@
     }
 }
 /* prettier-ignore */
-@media screen and (max-height: 723Px) {
+@media screen and (max-height: 737Px) {
 
     .page {
         
@@ -378,6 +378,7 @@
             bottom: -50px;
         }
         .bigTitleBox{
+            margin-top: -430px;
             .font{
                 bottom: -116px;
             }

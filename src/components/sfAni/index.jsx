@@ -1,5 +1,5 @@
-import { View, Canvas } from "@tarojs/components";
-import Taro, { useLoad, useReady } from "@tarojs/taro";
+import { Canvas } from "@tarojs/components";
+import Taro from "@tarojs/taro";
 import { useState, useEffect, useRef } from "react";
 
 export default function index(props) {

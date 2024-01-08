@@ -3,7 +3,8 @@ import Taro, { useLoad } from "@tarojs/taro";
 import { useState, useEffect } from "react";
 import TopIcon from "../../components/topIcon/index";
 import LoadPre from "../../components/loadPre/index";
-import ShareCon from "../shareCon/index";
+import BackBtn from "../../components/backBtn/index";
+import ShareDeploy from "../../components/shareDeploy/index";
 
 import "./index.scss";
 
@@ -136,8 +137,9 @@ export default function index() {
     };
     return (
         <View className="posterPage">
+            <ShareDeploy></ShareDeploy>
             <TopIcon path="poster" />
-            <ShareCon></ShareCon>
+            <BackBtn></BackBtn>
             <View className={`foreground ${!showPoster ? "isShow" : "isHied"}`}>
                 <View className="fFont"></View>
                 <View className="lbody"></View>
