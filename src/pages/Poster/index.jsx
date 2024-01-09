@@ -5,6 +5,7 @@ import TopIcon from "../../components/topIcon/index";
 import LoadPre from "../../components/loadPre/index";
 import BackBtn from "../../components/backBtn/index";
 import ShareDeploy from "../../components/shareDeploy/index";
+import trackingApi from "../../utils/trackingApi";
 
 import "./index.scss";
 
@@ -21,6 +22,8 @@ export default function index() {
     const [showPoster, setShowPoster] = useState(false);
     const [tmpPath, setTmpPath] = useState("");
     const [tmpAppID, setTmpAppID] = useState("");
+    const [isAuth, setIsAuth] = useState(false);
+    const [showAuth, setShowAuth] = useState(false);
 
     useLoad(() => {
         loadPosterImg();
@@ -88,6 +91,7 @@ export default function index() {
     //保存图片
     const saveImg = () => {
         console.log(posterImgRe);
+        trackingApi(7);
         Taro.getSetting({
             success(res) {
                 if (!res.authSetting["scope.record"]) {
@@ -123,20 +127,29 @@ export default function index() {
     };
     //去抽奖页面
     const goToLottery = () => {
-        Taro.navigateTo({
-            url: tmpPath,
-        });
-        Taro.navigateToMiniProgram({
-            appId: tmpAppID,
-            path: tmpPath,
-            envVersion: "develop",
-            success(res) {
-                // 打开成功
-            },
-        });
+        setShowAuth(true);
+    };
+    useEffect(() => {
+        if (isAuth) {
+            trackingApi(6);
+            Taro.navigateTo({
+                url: tmpPath,
+            });
+        }
+    }, [isAuth]);
+
+    const authState = (state) => {
+        console.log(state ? "授权成功" : "授权失败");
+        if (state) setIsAuth(true);
+        else setIsAuth(false);
+        setTimeout(() => {
+            setShowAuth(false);
+        }, 1000);
     };
     return (
         <View className="posterPage">
+            {showAuth && <ec-auth authState={{ authState }}></ec-auth>}
+
             <ShareDeploy></ShareDeploy>
             <TopIcon path="poster" />
             <BackBtn></BackBtn>

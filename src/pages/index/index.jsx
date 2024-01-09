@@ -5,14 +5,7 @@ import "./index.scss";
 import LoadPre from "../../components/loadPre/index";
 import TopIcon from "../../components/topIcon/index";
 import ShareDeploy from "../../components/shareDeploy/index";
-
-let animation = Taro.createAnimation({
-    transformOrigin: "50% 50%",
-    duration: 5000,
-    timingFunction: "linear",
-    delay: 0,
-});
-
+import trackingApi from "../../utils/trackingApi";
 export default function Index() {
     const [isload, setIsload] = useState(false);
     const [hideGroup, setHideGroup] = useState(false);
@@ -46,6 +39,7 @@ export default function Index() {
     };
     //跳转到AR识别页面
     const goAR = () => {
+        trackingApi(0);
         Taro.navigateTo({
             url: "../webAR/index",
         });

@@ -5,6 +5,7 @@ import { WebAr } from "../../utils/WebAr";
 import "./index.scss";
 import BackBtn from "../../components/backBtn/index";
 import ShareDeploy from "../../components/shareDeploy/index";
+import trackingApi from "../../utils/trackingApi";
 
 import SfAni from "../../components/sfAni/index";
 const sfAniImgInfo = {
@@ -28,6 +29,7 @@ export default function Index() {
     const [resReady, setResReady] = useState(false);
 
     function getToken() {
+        console.log("1，获取token");
         return new Promise((resolve, reject) => {
             Taro.request({
                 url: `https://huanghe.ronghuiad.com/api/index.php/YiliARApi/getBaduAiAccessToken`,
@@ -40,6 +42,8 @@ export default function Index() {
     }
 
     useEffect(() => {
+        console.log("2，获取相机权限");
+
         Taro.getSetting({
             success: function (res) {
                 if (!res.authSetting[`scope.camera`]) {
@@ -57,6 +61,8 @@ export default function Index() {
                 CONFIG.token = res;
             })
             .then(() => {
+                console.log("3，设置AR回调");
+
                 const query = Taro.createSelectorQuery();
                 query
                     .select("#canvas")
@@ -79,17 +85,21 @@ export default function Index() {
                                 icon: "success",
                                 duration: 3000,
                             });
+                            trackingApi(4);
                         });
                         setWebArCtr(webAr);
                     });
             });
+        getTempCas();
     }, []);
     useEffect(() => {
+        console.log("4,开始识别");
         if (webArCtr && resReady) webArCtr.startSearch();
     }, [resReady]);
 
-    //识别执行函数
     const beginIdentify = () => {
+        trackingApi(5);
+
         Taro.navigateTo({
             url: "../poster/index",
         });
@@ -97,12 +107,13 @@ export default function Index() {
 
     //相机调用成功
     const cameraReady = () => {
+        console.log("5,相机准备完毕");
+
         console.log("camera ok");
         Taro.showLoading({
             title: "AR识别准备中",
             mask: true,
         });
-        getTempCas();
     };
     const getTempCas = () => {
         const offCanvas = Taro.createOffscreenCanvas({
@@ -133,7 +144,7 @@ export default function Index() {
                     const img = canvas.createImage();
                     img.src = posterImgArr[i];
                     img.onload = function () {
-                        console.log("一张图片加载完成");
+                        console.log("图片加载完成");
                         resolve(img);
                     };
                 });

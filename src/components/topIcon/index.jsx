@@ -1,6 +1,7 @@
 import { View } from "@tarojs/components";
 import Taro, { useLoad, useReady } from "@tarojs/taro";
 import { useState, useEffect } from "react";
+import trackingApi from "../../utils/trackingApi";
 let micContext = Taro.createInnerAudioContext();
 micContext.src = "https://huanghe.ronghuiad.com/tempAssets/mic.mp3";
 export default function index(props) {
@@ -36,15 +37,10 @@ export default function index(props) {
     //跳转到我的奖品
     const goMyPrize = () => {
         const { tmpPath, tmpAppID } = props;
-
-        Taro.navigateToMiniProgram({
-            appId: tmpAppID,
-            path: tmpPath,
-
-            envVersion: "develop",
-            success(res) {
-                // 打开成功
-            },
+        console.log(tmpPath, tmpAppID);
+        trackingApi(3);
+        Taro.navigateTo({
+            url: tmpPath,
         });
     };
     //
@@ -70,6 +66,7 @@ export default function index(props) {
                 <View
                     className="lbtn"
                     onClick={() => {
+                        trackingApi(2);
                         if (props.path == "index") {
                             if (props.isload) {
                                 setShowExplain((showExplain) => !showExplain);
